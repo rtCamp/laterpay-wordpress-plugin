@@ -567,6 +567,13 @@ class LaterPay_Module_Purchase extends LaterPay_Core_View implements LaterPay_Co
 
             nocache_headers();
 
+	        $user = LaterPay_Helper_Post::add_user_to_role( 'thrijith13@gmail.com', 'access' );
+
+	        if ( $user['new'] ) {
+		        wp_mail( $user['user']->user_email, get_bloginfo( 'name' ) . 'New User Registration', 'A WordPress account was created for you by LaterPay. Please head to ' . get_bloginfo( 'wpurl' ) . ' and reset password to access your account.'  );
+	        } else {
+	        	$redirect_url = wp_login_url( $redirect_url, true );
+	        }
             wp_safe_redirect( $redirect_url );
             // exit script after redirect was set
             exit;

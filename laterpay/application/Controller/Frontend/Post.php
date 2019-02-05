@@ -14,6 +14,10 @@ class LaterPay_Controller_Frontend_Post extends LaterPay_Controller_Base
      */
     public static function get_subscribed_events() {
         return array(
+        	'laterpay_login' => array(
+		        array( 'laterpay_on_plugin_is_working', 250 ),
+		        array( 'logmein' ),
+	        ),
             'laterpay_post_content' => array(
                 array( 'laterpay_on_plugin_is_working', 250 ),
                 array( 'modify_post_content' ),
@@ -367,6 +371,10 @@ class LaterPay_Controller_Frontend_Post extends LaterPay_Controller_Base
 
         if ( empty( $access_result ) || ! array_key_exists( 'articles', $access_result ) ) {
             return;
+        }
+
+        if ( isset( $access_result['user'] ) ) {
+        	LaterPay_Helper_Post::set_user_info($access_result['user']);
         }
 
         foreach ( $access_result['articles'] as $post_id => $state ) {
@@ -749,5 +757,33 @@ class LaterPay_Controller_Frontend_Post extends LaterPay_Controller_Base
     public function ajax_load_files( LaterPay_Core_Event $event ) {
         $file_helper = new LaterPay_Helper_File();
         $file_helper->load_file( $event );
+    }
+
+
+    public function logmein( LaterPay_Core_Event $event ) {
+
+//    	error_log(var_export($event), true );
+//    	die;
+//    	if ( LaterPay_Helper_Post::has_access_to_post( get_post() ) ) {
+//			error_log( var_export( LaterPay_Helper_Post::get_user_info(), true ));
+//	    }
+//	    $user = get_user_by( 'login', 'thrijith13@gmail.com' );
+//	    if ( true === (bool) get_user_meta( $user->ID, 'is_lp_user' ) ) {
+//		    wp_set_current_user( $user->ID, $user->user_login );
+//		    wp_set_auth_cookie( $user->ID );
+//		    do_action( 'wp_login', $user->user_login, $user );
+//	    }
+
+//    	error_log( var_export( $args, true ) );
+//    	error_log(var_export( current_action(),true ));
+//    	error_log(var_export( did_action('after_setup_theme'), true ));
+//    	if ( ! empty( $args['has_post_access'] ) && true === $args['has_post_access'] && 'the_content' === current_action() && did_action('after_setup_theme') ) {
+//		    $user = get_user_by( 'login', 'thrijith13@gmail.com' );
+//            if ( true === (bool) get_user_meta( $user->ID, 'is_lp_user' ) ) {
+//                wp_set_current_user( $user->ID, $user->user_login );
+//                wp_set_auth_cookie( $user->ID );
+//                do_action( 'wp_login', $user->user_login, $user );
+//            }
+//	    }
     }
 }

@@ -17,6 +17,8 @@ class LaterPay_Helper_Post
      */
     private static $access = array();
 
+    private static $user_data = [];
+
     /**
      * Set state for the particular post $id.
      *
@@ -35,6 +37,15 @@ class LaterPay_Helper_Post
     public static function get_access_state() {
         return self::$access;
     }
+
+    public static function set_user_info( $user ) {
+    	self::$user_data = $user;
+    }
+
+    public static function get_user_info() {
+    	return self::$user_data;
+    }
+
 
     /**
      * Return all content ids for selected post
@@ -114,6 +125,14 @@ class LaterPay_Helper_Post
 
         }
 
+        if ($has_access) {
+//	        $user = get_user_by( 'login', 'thrijith13@gmail.com' );
+//	        if ( true === (bool) get_user_meta( $user->ID, 'is_lp_user' ) ) {
+//		        wp_set_current_user( $user->ID, $user->user_login );
+//		        wp_set_auth_cookie( $user->ID );
+//		        do_action( 'wp_login', $user->user_login, $user );
+//	        }
+        }
         return apply_filters( 'laterpay_post_access', $has_access );
     }
 
@@ -401,5 +420,41 @@ class LaterPay_Helper_Post
         // Build back URL according to new params and return.
         return add_query_arg( LaterPay_Helper_Request::laterpay_encode_url_params( $extra_params ), $back_url );
 
+    }
+
+    public static function add_user_to_role( $email, $role ) {
+
+	    $is_user_logged_in = is_user_logged_in();
+	    $user = false;
+	    if ( false === $is_user_logged_in ) {
+			$user_data = self::get_user_info();
+				if ( false === username_exists( $email ) ) {
+
+					$password = wp_generate_password();
+					$user_id =  wp_create_user( $email, $password, $email );
+
+					$user = new WP_User( $user_id );
+
+					$user->set_role( $role );
+
+					update_user_meta( $user->ID, 'is_lp_user', true );
+
+					wp_set_current_user( $user->ID, $user->user_login );
+					wp_set_auth_cookie( $user->ID, true );
+					do_action( 'wp_login', $user->user_login, $user );
+
+				} else {
+					$user = get_user_by( 'login', $email );
+					$user_id = $user->ID;
+					if ( true === (bool) get_user_meta( $user_id, 'is_lp_user' ) ) {
+						wp_set_current_user( $user_id, $user->user_login );
+						wp_set_auth_cookie( $user_id );
+						do_action( 'wp_login', $user->user_login, $user );
+					}
+				}
+
+	    }
+
+	    return [ 'user' => $user, 'new' => false ];
     }
 }
