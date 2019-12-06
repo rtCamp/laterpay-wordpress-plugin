@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Laterpay TinyMCE controller.
+ * LaterPay TinyMCE controller.
  *
  * Plugin Name: LaterPay
  * Plugin URI: https://github.com/laterpay/laterpay-wordpress-plugin
@@ -46,6 +46,10 @@ class LaterPay_Controller_Admin_TinyMCE extends LaterPay_Controller_Admin_Base {
      */
     public function register_tinymce_button( LaterPay_Core_Event $event ) {
 
+        if ( ! $this->should_add_shortcode_generator() ) {
+            return;
+        }
+
         $result = $event->get_result();
 
         $result = array_merge(
@@ -68,11 +72,31 @@ class LaterPay_Controller_Admin_TinyMCE extends LaterPay_Controller_Admin_Base {
      */
     public function add_tinymce_button( LaterPay_Core_Event $event ) {
 
+        if ( ! $this->should_add_shortcode_generator() ) {
+            return;
+        }
+
         $result = $event->get_result();
 
         $result['laterpay_shortcode_generator'] = sprintf( '%slaterpay-backend-shortcode-generator.js', $this->config->js_url );
 
         $event->set_result( $result );
+    }
+
+    /**
+     * Check whether should add shortcode generator button or not.
+     *
+     * @return bool True on if post type is allowed, Otherwise False.
+     */
+    public function should_add_shortcode_generator() {
+
+        $current_post = get_post();
+
+        if ( empty( $current_post ) || ! is_a( $current_post, 'WP_Post' ) ) {
+            return false;
+        }
+
+        return in_array( $current_post->post_type, $this->config->get( 'content.enabled_post_types' ), true ) ? true : false;
     }
 
     /**
@@ -82,7 +106,7 @@ class LaterPay_Controller_Admin_TinyMCE extends LaterPay_Controller_Admin_Base {
      */
     public function localize_script() {
 
-        // Time passes and vouchers data.
+        // Time passes data.
         $time_passes_model = LaterPay_Model_TimePassWP::get_instance();
         $time_passes_list  = $time_passes_model->get_active_time_passes();
         $time_passes_ids   = array();
@@ -124,7 +148,7 @@ class LaterPay_Controller_Admin_TinyMCE extends LaterPay_Controller_Admin_Base {
                     'text' => esc_html__( 'LaterPay ShortCodes', 'laterpay' ),
                 ),
                 'premium_download'             => array(
-                    'title'             => esc_html__( 'LaterPay Premium Download', 'laterpay' ),
+                    'title'             => esc_html__( 'LaterPay Premium Download Box', 'laterpay' ),
                     'target_post_id'    => array(
                         'label' => esc_html__( 'Post ID', 'laterpay' ),
                     ),
