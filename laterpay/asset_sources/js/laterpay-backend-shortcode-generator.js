@@ -229,13 +229,21 @@
                                 text: laterpay_shortcode_generator.time_pass_purchase_button.title,
                                 onclick: function () {
 
-                                    var modal_data = laterpay_shortcode_generator.time_pass_purchase_button;
+                                    var modal_data = laterpay_shortcode_generator.time_pass_purchase_button,
+                                        body = [],
+                                        height = 400;
 
-                                    editor.windowManager.open( {
-                                        title: modal_data.title,
-                                        width: 512,
-                                        height: 400,
-                                        body: [
+                                    if ( 0 >= modal_data.id.values.length ) {
+                                        // We don't have any item to show.
+                                        height = 50;
+                                        body = [
+                                            {
+                                                type: 'container',
+                                                html: '<b style="text-align: center;">' + modal_data.no_item_text + '</b>',
+                                            }
+                                        ];
+                                    } else {
+                                        body = [
                                             {
                                                 type: 'listbox',
                                                 name: 'id',
@@ -268,8 +276,21 @@
                                                 text: modal_data.custom_image_path.text,
                                                 onclick: self.onclick_media_button,
                                             },
-                                        ],
+                                        ];
+                                    }
+
+                                    editor.windowManager.open( {
+                                        title: modal_data.title,
+                                        width: 512,
+                                        height: height,
+                                        body: body,
                                         onsubmit: function ( e ) {
+
+                                            // If there is no item then we don't need to render shortcode.
+                                            if ( 0 >= modal_data.id.values.length ) {
+                                                return;
+                                            }
+
                                             var values = self.object_to_string( e.data );
                                             var shortcode = '[laterpay_time_pass_purchase ' + values + ' ]';
                                             editor.insertContent( shortcode );
@@ -282,13 +303,21 @@
                                 text: laterpay_shortcode_generator.subscription_purchase_button.title,
                                 onclick: function () {
 
-                                    var modal_data = laterpay_shortcode_generator.subscription_purchase_button;
+                                    var modal_data = laterpay_shortcode_generator.subscription_purchase_button,
+                                        body = [],
+                                        height = 400;
 
-                                    editor.windowManager.open( {
-                                        title: modal_data.title,
-                                        width: 512,
-                                        height: 400,
-                                        body: [
+                                    if ( 0 >= modal_data.id.values.length ) {
+                                        // We don't have any item to show.
+                                        height = 50;
+                                        body = [
+                                            {
+                                                type: 'container',
+                                                html: '<b style="text-align: center;">' + modal_data.no_item_text + '</b>',
+                                            }
+                                        ];
+                                    } else {
+                                        body = [
                                             {
                                                 type: 'listbox',
                                                 name: 'id',
@@ -321,8 +350,21 @@
                                                 text: modal_data.custom_image_path.text,
                                                 onclick: self.onclick_media_button,
                                             },
-                                        ],
+                                        ];
+                                    }
+
+                                    editor.windowManager.open( {
+                                        title: modal_data.title,
+                                        width: 512,
+                                        height: height,
+                                        body: body,
                                         onsubmit: function ( e ) {
+
+                                            // If there is no item then we don't need to render shortcode.
+                                            if ( 0 >= modal_data.id.values.length ) {
+                                                return;
+                                            }
+
                                             var values = self.object_to_string( e.data );
                                             var shortcode = '[laterpay_subscription_purchase ' + values + ' ]';
                                             editor.insertContent( shortcode );

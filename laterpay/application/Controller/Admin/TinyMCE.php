@@ -172,6 +172,7 @@ class LaterPay_Controller_Admin_TinyMCE extends LaterPay_Controller_Admin_Base {
                 ),
                 'time_pass_purchase_button'    => array(
                     'title'                   => esc_html__( 'Time-pass purchase button', 'laterpay' ),
+                    'no_item_text'            => esc_html__( 'No Time-pass Available.', 'laterpay' ),
                     'id'                      => array(
                         'label'  => esc_html__( 'ID', 'laterpay' ),
                         'values' => $time_passes_ids,
@@ -193,6 +194,7 @@ class LaterPay_Controller_Admin_TinyMCE extends LaterPay_Controller_Admin_Base {
                 ),
                 'subscription_purchase_button' => array(
                     'title'                   => esc_html__( 'Subscription purchase button', 'laterpay' ),
+                    'no_item_text'            => esc_html__( 'No Subscription Available.', 'laterpay' ),
                     'id'                      => array(
                         'label'  => esc_html__( 'ID', 'laterpay' ),
                         'values' => $subscriptions_ids,
