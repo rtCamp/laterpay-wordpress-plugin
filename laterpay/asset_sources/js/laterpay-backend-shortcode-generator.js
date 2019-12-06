@@ -5,9 +5,10 @@
  */
 /* globals laterpay_shortcode_generator, tinymce, wp */
 
-'use strict';
 (function ( $ ) {
     $(function () {
+        'use strict';
+
         var laterpay_shortcode_genrator = {
 
             /**
@@ -146,7 +147,7 @@
                     'laterpay_shortcode_generator',
                     {
                         text: laterpay_shortcode_generator.button.text,
-                        icon: 'dashicons-laterpay-logo',
+                        icon: 'laterpay-logo',
                         type: 'menubutton',
                         menu: [
                             {
