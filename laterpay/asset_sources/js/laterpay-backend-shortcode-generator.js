@@ -3,6 +3,7 @@
  *
  * @package laterpay
  */
+/*global laterpay_shortcode_generator */
 
 'use strict';
 
@@ -139,44 +140,44 @@ var laterpay_shortcode_genrator = {
         editor.addButton(
             'laterpay_shortcode_generator',
             {
-                text: 'LaterPay ShortCodes',
-                icon: false,
+                text: laterpay_shortcode_generator.button.text,
+                icon: 'dashicons-laterpay-logo',
                 type: 'menubutton',
                 menu: [
                     {
-                        text: 'Download Box',
+                        text: laterpay_shortcode_generator.premium_download.title,
                         onclick: function () {
                             // Open window
                             editor.windowManager.open( {
-                                title: 'LaterPay Premium Download',
+                                title: laterpay_shortcode_generator.premium_download.title,
                                 width: 512,
                                 height: 430,
                                 body: [
                                     {
                                         type: 'textbox',
                                         name: 'target_post_id',
-                                        label: 'Post ID'
+                                        label: laterpay_shortcode_generator.premium_download.target_post_id.label,
                                     },
                                     {
                                         type: 'textbox',
                                         name: 'target_post_title',
-                                        label: 'Post Title'
+                                        label: laterpay_shortcode_generator.premium_download.target_post_title.label,
                                     },
                                     {
                                         type: 'textbox',
                                         name: 'heading_text',
-                                        label: 'Heading Title',
-                                        value: 'Additional Premium Content'
+                                        label: laterpay_shortcode_generator.premium_download.heading_text.label,
+                                        value: laterpay_shortcode_generator.premium_download.heading_text.value,
                                     },
                                     {
                                         type: 'textbox',
                                         name: 'description_text',
-                                        label: 'Description text'
+                                        label: laterpay_shortcode_generator.premium_download.description_text.label,
                                     },
                                     {
                                         type: 'listbox',
                                         name: 'content_type',
-                                        label: 'Content Type',
+                                        label: laterpay_shortcode_generator.premium_download.content_type.label,
                                         values: [
                                             { text: 'application/zip', value: 'application/zip' },
                                             {
@@ -201,8 +202,8 @@ var laterpay_shortcode_genrator = {
                                     {
                                         type: 'button',
                                         name: 'teaser_image_path',
-                                        label: 'Teaser Image Path',
-                                        text: 'Select Media',
+                                        label: laterpay_shortcode_generator.premium_download.teaser_image_path.label,
+                                        text: laterpay_shortcode_generator.premium_download.teaser_image_path.text,
                                         onclick: self.onclick_media_button,
                                     },
                                 ],
@@ -216,43 +217,44 @@ var laterpay_shortcode_genrator = {
                         }
                     },
                     {
-                        text: 'Time-pass purchase button',
+                        text: laterpay_shortcode_generator.time_pass_purchase_button.title,
                         onclick: function () {
 
                             editor.windowManager.open( {
-                                title: 'Time-pass purchase button',
+                                title: laterpay_shortcode_generator.time_pass_purchase_button.title,
                                 width: 512,
                                 height: 400,
                                 body: [
                                     {
-                                        type: 'textbox',
+                                        type: 'listbox',
                                         name: 'id',
-                                        label: 'ID'
+                                        label: laterpay_shortcode_generator.time_pass_purchase_button.id.label,
+                                        values: laterpay_shortcode_generator.time_pass_purchase_button.id.values,
                                     },
                                     {
                                         type: 'textbox',
                                         name: 'button_text',
-                                        label: 'Button Text'
+                                        label: laterpay_shortcode_generator.time_pass_purchase_button.button_text.label,
                                     },
                                     {
                                         type: 'colorbox',
                                         name: 'button_background_color',
-                                        label: 'Button background color',
-                                        value: '#01a99d',
+                                        label: laterpay_shortcode_generator.time_pass_purchase_button.button_background_color.label,
+                                        value: laterpay_shortcode_generator.time_pass_purchase_button.button_background_color.value,
                                         onaction: self.colorbox_on_action,
                                     },
                                     {
                                         type: 'colorbox',
                                         name: 'button_text_color',
-                                        label: 'Button text color',
+                                        label: laterpay_shortcode_generator.time_pass_purchase_button.button_text_color.label,
                                         value: '#ffffff',
                                         onaction: self.colorbox_on_action,
                                     },
                                     {
                                         type: 'button',
                                         name: 'custom_image_path',
-                                        label: 'Custom image path',
-                                        text: 'Select Image',
+                                        label: laterpay_shortcode_generator.time_pass_purchase_button.custom_image_path.label,
+                                        text: laterpay_shortcode_generator.time_pass_purchase_button.custom_image_path.text,
                                         onclick: self.onclick_media_button,
                                     },
                                 ],
@@ -266,41 +268,44 @@ var laterpay_shortcode_genrator = {
                         }
                     },
                     {
-                        text: 'Subscription purchase button',
+                        text: laterpay_shortcode_generator.subscription_purchase_button.title,
                         onclick: function () {
 
                             editor.windowManager.open( {
-                                title: 'Subscription purchase button',
+                                title: laterpay_shortcode_generator.subscription_purchase_button.title,
                                 width: 512,
                                 height: 400,
                                 body: [
                                     {
-                                        type: 'textbox',
+                                        type: 'listbox',
                                         name: 'id',
-                                        label: 'ID'
+                                        label: laterpay_shortcode_generator.subscription_purchase_button.id.label,
+                                        values: laterpay_shortcode_generator.subscription_purchase_button.id.values,
                                     },
                                     {
                                         type: 'textbox',
                                         name: 'button_text',
-                                        label: 'Button Text'
+                                        label: laterpay_shortcode_generator.subscription_purchase_button.button_text.label,
                                     },
                                     {
-                                        type: 'textbox',
+                                        type: 'colorbox',
                                         name: 'button_background_color',
-                                        label: 'Button background color',
-                                        value: '#01a99d',
+                                        label: laterpay_shortcode_generator.subscription_purchase_button.button_background_color.label,
+                                        value: laterpay_shortcode_generator.subscription_purchase_button.button_background_color.value,
+                                        onaction: self.colorbox_on_action,
                                     },
                                     {
-                                        type: 'textbox',
+                                        type: 'colorbox',
                                         name: 'button_text_color',
-                                        label: 'Button text color',
+                                        label: laterpay_shortcode_generator.subscription_purchase_button.button_text_color.label,
                                         value: '#ffffff',
+                                        onaction: self.colorbox_on_action,
                                     },
                                     {
-                                        type: 'textbox',
+                                        type: 'button',
                                         name: 'custom_image_path',
-                                        label: 'Custom image path',
-                                        text: 'Select Image',
+                                        label: laterpay_shortcode_generator.subscription_purchase_button.custom_image_path.label,
+                                        text: laterpay_shortcode_generator.subscription_purchase_button.custom_image_path.text,
                                         onclick: self.onclick_media_button,
                                     },
                                 ],
