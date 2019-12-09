@@ -118,7 +118,7 @@ class LaterPay_Controller_Admin_TinyMCE extends LaterPay_Controller_Admin_Base {
 
         wp_localize_script(
             'wp-tinymce',
-            'laterpay_shortcode_generator',
+            'laterpay_shortcode_generator_labels',
             array(
                 'button'                       => array(
                     'text' => esc_html__( 'LaterPay ShortCodes', 'laterpay' ),

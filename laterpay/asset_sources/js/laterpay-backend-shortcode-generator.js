@@ -3,7 +3,7 @@
  *
  * @package laterpay
  */
-/* globals laterpay_shortcode_generator, tinymce, wp */
+/* globals laterpay_shortcode_generator_labels, tinymce, wp */
 
 (function ( $ ) {
     $(function () {
@@ -146,15 +146,15 @@
                 editor.addButton(
                     'laterpay_shortcode_generator',
                     {
-                        text: laterpay_shortcode_generator.button.text,
+                        text: laterpay_shortcode_generator_labels.button.text,
                         icon: 'laterpay-logo',
                         type: 'menubutton',
                         menu: [
                             {
-                                text: laterpay_shortcode_generator.premium_download.title,
+                                text: laterpay_shortcode_generator_labels.premium_download.title,
                                 onclick: function () {
 
-                                    var modal_data = laterpay_shortcode_generator.premium_download;
+                                    var modal_data = laterpay_shortcode_generator_labels.premium_download;
 
                                     // Open window
                                     editor.windowManager.open( {
@@ -226,10 +226,10 @@
                                 }
                             },
                             {
-                                text: laterpay_shortcode_generator.time_pass_purchase_button.title,
+                                text: laterpay_shortcode_generator_labels.time_pass_purchase_button.title,
                                 onclick: function () {
 
-                                    var modal_data = laterpay_shortcode_generator.time_pass_purchase_button,
+                                    var modal_data = laterpay_shortcode_generator_labels.time_pass_purchase_button,
                                         body = [],
                                         height = 400;
 
@@ -300,10 +300,10 @@
                                 }
                             },
                             {
-                                text: laterpay_shortcode_generator.subscription_purchase_button.title,
+                                text: laterpay_shortcode_generator_labels.subscription_purchase_button.title,
                                 onclick: function () {
 
-                                    var modal_data = laterpay_shortcode_generator.subscription_purchase_button,
+                                    var modal_data = laterpay_shortcode_generator_labels.subscription_purchase_button,
                                         body = [],
                                         height = 400;
 
