@@ -27,11 +27,11 @@ class LaterPay_Controller_Admin_TinyMCE extends LaterPay_Controller_Admin_Base {
             ),
             'laterpay_admin_enqueue_styles_post_edit' => array(
                 array( 'laterpay_on_admin_view', 200 ),
-                array( 'localize_script', 50 ),
+                array( 'localize_script' ),
             ),
             'laterpay_admin_enqueue_styles_post_new'  => array(
                 array( 'laterpay_on_admin_view', 200 ),
-                array( 'localize_script', 50 ),
+                array( 'localize_script' ),
             ),
         );
 
@@ -45,10 +45,6 @@ class LaterPay_Controller_Admin_TinyMCE extends LaterPay_Controller_Admin_Base {
      * @return void
      */
     public function register_tinymce_button( LaterPay_Core_Event $event ) {
-
-        if ( ! $this->should_add_shortcode_generator() ) {
-            return;
-        }
 
         $result = $event->get_result();
 
@@ -72,31 +68,11 @@ class LaterPay_Controller_Admin_TinyMCE extends LaterPay_Controller_Admin_Base {
      */
     public function add_tinymce_button( LaterPay_Core_Event $event ) {
 
-        if ( ! $this->should_add_shortcode_generator() ) {
-            return;
-        }
-
         $result = $event->get_result();
 
         $result['laterpay_shortcode_generator'] = sprintf( '%slaterpay-backend-shortcode-generator.js', $this->config->js_url );
 
         $event->set_result( $result );
-    }
-
-    /**
-     * Check whether should add shortcode generator button or not.
-     *
-     * @return bool True on if post type is allowed, Otherwise False.
-     */
-    public function should_add_shortcode_generator() {
-
-        $current_post = get_post();
-
-        if ( empty( $current_post ) || ! is_a( $current_post, 'WP_Post' ) ) {
-            return false;
-        }
-
-        return in_array( $current_post->post_type, $this->config->get( 'content.enabled_post_types' ), true ) ? true : false;
     }
 
     /**
@@ -141,7 +117,7 @@ class LaterPay_Controller_Admin_TinyMCE extends LaterPay_Controller_Admin_Base {
         }
 
         wp_localize_script(
-            'laterpay-post-edit',
+            'wp-tinymce',
             'laterpay_shortcode_generator',
             array(
                 'button'                       => array(

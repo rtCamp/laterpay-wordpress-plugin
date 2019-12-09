@@ -9,7 +9,7 @@
     $(function () {
         'use strict';
 
-        var laterpay_shortcode_genrator = {
+        var laterpay_shortcode_generator = {
 
             /**
              * Init function,
@@ -380,6 +380,6 @@
 
         };
 
-        laterpay_shortcode_genrator.init();
+        laterpay_shortcode_generator.init();
     });
 } )( jQuery );

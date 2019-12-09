@@ -33,11 +33,11 @@ class LaterPay_Controller_Admin_Post_Metabox extends LaterPay_Controller_Base
             ),
             'laterpay_admin_enqueue_styles_post_edit' => array(
                 array( 'laterpay_on_admin_view', 200 ),
-                array( 'load_assets', 100 ),
+                array( 'load_assets' ),
             ),
             'laterpay_admin_enqueue_styles_post_new' => array(
                 array( 'laterpay_on_admin_view', 200 ),
-                array( 'load_assets', 100 ),
+                array( 'load_assets' ),
             ),
             'wp_ajax_laterpay_reset_post_publication_date' => array(
                 array( 'laterpay_on_admin_view', 200 ),
