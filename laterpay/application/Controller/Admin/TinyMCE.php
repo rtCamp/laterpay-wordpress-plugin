@@ -146,6 +146,10 @@ class LaterPay_Controller_Admin_TinyMCE extends LaterPay_Controller_Admin_Base {
                                 'value' => '',
                             ),
                             array(
+                                'text'  => esc_html__( 'Link', 'laterpay' ),
+                                'value' => 'link',
+                            ),
+                            array(
                                 'text'  => esc_html__( 'File', 'laterpay' ),
                                 'value' => 'file',
                             ),
