@@ -361,3 +361,25 @@ li.lp_price-type__global {
     }
 
 }
+
+.mce-container {
+    .lp-media-preview {
+        padding: 10px;
+
+        .preview-image {
+            height: 100px;
+            width: 100px;
+            margin-right: 10px;
+            display: block;
+            float: left;
+        }
+
+        .media-name {
+            display: block;
+            overflow: hidden;
+            white-space: pre-wrap;
+            margin-bottom: 10px;
+        }
+    }
+
+}

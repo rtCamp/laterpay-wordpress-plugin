@@ -122,6 +122,15 @@ class LaterPay_Controller_Admin_TinyMCE extends LaterPay_Controller_Admin_Base {
             array(
                 'button'                       => array(
                     'text' => esc_html__( 'LaterPay ShortCodes', 'laterpay' ),
+                    'clear' => esc_html__( 'Clear', 'laterpay' ),
+                ),
+                'preview_images' => array(
+                    'text' => sprintf( '%spremium-text.png', $this->config->image_url ),
+                    'audio' => sprintf( '%spremium-audio.png', $this->config->image_url ),
+                    'download' => sprintf( '%spremium-download.png', $this->config->image_url ),
+                    'gallery' => sprintf( '%spremium-gallery.png', $this->config->image_url ),
+                    'video' => sprintf( '%spremium-video.png', $this->config->image_url ),
+                    'no_preview_image'             => sprintf( '%sno-preview.png', $this->config->image_url ),
                 ),
                 'preview_image'                => sprintf( '%spremium-text.png', $this->config->image_url ),
                 'no_preview_image'             => sprintf( '%sno-preview.png', $this->config->image_url ),
