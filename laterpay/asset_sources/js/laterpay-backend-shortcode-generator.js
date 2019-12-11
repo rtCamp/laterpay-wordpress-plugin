@@ -145,7 +145,7 @@
 
             get_media_markup: function ( target_field ) {
 
-                return '<div id="preview_' + target_field + '" class="lp-media-preview">' +
+                return '<div id="preview_' + target_field + '" class="lp-media-preview" data-target_field="' + target_field + '">' +
                        '<img class="preview-image" src="' + laterpay_shortcode_generator_labels.preview_images.gallery + '"/>' +
                        '<span class="media-name"></span>' +
                        '<a class="button-clear_media hidden" href="javascript:">' + laterpay_shortcode_generator_labels.button.clear + '</a>' +
@@ -160,10 +160,22 @@
                 var image_element = $( '.preview-image', preview_container );
                 var media_name_element = $( '.media-name', preview_container );
                 var clear_media_element = $( '.button-clear_media', preview_container );
+                var target_field = $( preview_container ).data( 'target_field' );
+                var controls = editor_window.controlIdLookup;
+                var key = '';
 
                 $( image_element ).attr( 'src', laterpay_shortcode_generator_labels.preview_images.gallery );
                 $( media_name_element ).text( '' );
                 $( clear_media_element ).addClass( 'hidden' );
+
+                if ( 'object' === typeof controls ) {
+                    for ( key in controls ) {
+                        if ( controls.hasOwnProperty(key) && target_field === controls[ key ]._name ) {
+                            editor_window.controlIdLookup[ key ].state.data.value = '';
+                        }
+                    }
+                }
+
             },
 
             /**
@@ -231,7 +243,6 @@
                                                 name   : 'teaser_image_path',
                                                 label  : modal_data.teaser_image_path.label,
                                                 text   : modal_data.teaser_image_path.text,
-                                                preview_element_id:'preview_teaser_image_path',
                                                 wp_media_args: {
                                                     library: {
                                                         type: 'image',
@@ -242,16 +253,15 @@
                                         {
                                             type: 'container',
                                             label: ' ',
-                                            // phpcs:ignore WordPressVIPMinimum.JS.StringConcat.Found
-                                            html: '<img id="preview_teaser_image_path" src="' + laterpay_shortcode_generator_labels.preview_image + '" style="width: 100px; height: 100px; margin: 10px;"/>', // jshint ignore:line
+                                            html: self.get_media_markup( 'teaser_image_path' ),
                                         },
                                         ],
-                                        onopen: function ( e ) {
+                                        onopen: function () {
+                                            var editor_window = this;
 
                                             $( '.lp-media-preview .button-clear_media' ).on( 'click', function () {
-                                                self.on_clear_media( this, self );
+                                                self.on_clear_media( this, editor_window );
                                             } );
-
                                         },
                                         onsubmit: function (e) {
                                             var values = self.object_to_string(e.data);
@@ -294,7 +304,6 @@
                                                 name   : 'custom_image_path',
                                                 label  : modal_data.custom_image_path.label,
                                                 text   : modal_data.custom_image_path.text,
-                                                preview_element_id:'preview_custom_image_path',
                                                 wp_media_args: {
                                                     library: {
                                                         type: 'image',
@@ -305,8 +314,7 @@
                                             {
                                                 type: 'container',
                                                 label: ' ',
-                                                // phpcs:ignore WordPressVIPMinimum.JS.StringConcat.Found
-                                                html: '<img id="preview_custom_image_path" src="' + laterpay_shortcode_generator_labels.preview_image + '" style="width: 100px; height: 100px; margin: 10px;"/>', // jshint ignore:line
+                                                html: self.get_media_markup( 'custom_image_path' ),
                                         },
                                             {
                                                 type: 'container',
@@ -340,6 +348,13 @@
                                         width   : 512,
                                         height  : height,
                                         body    : body,
+                                        onopen: function () {
+                                            var editor_window = this;
+
+                                            $( '.lp-media-preview .button-clear_media' ).on( 'click', function () {
+                                                self.on_clear_media( this, editor_window );
+                                            } );
+                                        },
                                         onsubmit: function (e) {
 
                                             // If there is no item then we don't need to render shortcode.
@@ -397,8 +412,7 @@
                                             {
                                                 type: 'container',
                                                 label: ' ',
-                                                // phpcs:ignore WordPressVIPMinimum.JS.StringConcat.Found
-                                                html: '<img id="preview_custom_image_path" src="' + laterpay_shortcode_generator_labels.preview_image + '" style="width: 100px; height: 100px; margin: 10px;"/>', // jshint ignore:line
+                                                html: self.get_media_markup( 'custom_image_path' ),
                                         },
                                             {
                                                 type: 'container',
@@ -432,6 +446,13 @@
                                         width   : 512,
                                         height  : height,
                                         body    : body,
+                                        onopen: function () {
+                                            var editor_window = this;
+
+                                            $( '.lp-media-preview .button-clear_media' ).on( 'click', function () {
+                                                self.on_clear_media( this, editor_window );
+                                            } );
+                                        },
                                         onsubmit: function (e) {
 
                                             // If there is no item then we don't need to render shortcode.
