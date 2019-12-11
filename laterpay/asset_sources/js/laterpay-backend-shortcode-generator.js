@@ -143,6 +143,13 @@
                 frame.open();
             },
 
+            /**
+             * To generate media preview mark for media field in shortcode generator.
+             *
+             * @param {string} target_field ID of target field.
+             *
+             * @returns {string} HTML markup for media preview.
+             */
             get_media_markup: function ( target_field ) {
 
                 return '<div id="preview_' + target_field + '" class="lp-media-preview" data-target_field="' + target_field + '">' +
@@ -154,6 +161,15 @@
 
             },
 
+            /**
+             * To handle click event of clear media button.
+             * Manage to remove preview of media and remove value in field.
+             *
+             * @param {object} element HTML element for clear media button.
+             * @param {object} editor_window Object of editor window. To clear value from the field.
+             *
+             * @return void
+             */
             on_clear_media: function (element, editor_window) {
 
                 var preview_container = $( element ).parent( '.lp-media-preview' );
@@ -168,6 +184,9 @@
                 $( media_name_element ).text( '' );
                 $( clear_media_element ).addClass( 'hidden' );
 
+                /**
+                 * Find field to remove value. And change the state/value of field.
+                 */
                 if ( 'object' === typeof controls ) {
                     for ( key in controls ) {
                         if ( controls.hasOwnProperty(key) && target_field === controls[ key ]._name ) {
