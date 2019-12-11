@@ -152,12 +152,14 @@
              */
             get_media_markup: function ( target_field ) {
 
+                // @codingStandardsIgnoreStart
                 return '<div id="preview_' + target_field + '" class="lp-media-preview" data-target_field="' + target_field + '">' +
                        '<img class="preview-image" src="' + laterpay_shortcode_generator_labels.preview_images.gallery + '"/>' +
                        '<span class="media-name"></span>' +
                        '<a class="button-clear_media hidden" href="javascript:">' + laterpay_shortcode_generator_labels.button.clear + '</a>' +
                        '<br class="clear"/>' +
-                       '</div>'; // jshint ignore:line
+                       '</div>';
+                // @codingStandardsIgnoreEnd
 
             },
 
