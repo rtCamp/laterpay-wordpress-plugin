@@ -420,12 +420,12 @@ class LaterPay_Controller_Frontend_Shortcode extends LaterPay_Controller_Base
 
         $data = shortcode_atts( array(
             'id'   => null,
-            'type' => 'time-pass',
+            'type' => 'timepass',
         ), $atts );
 
         $allowed_types = [ 'time-pass', 'subscription' ];
         $data['type']  = strtolower( trim( $data['type'] ) );
-        $data['type']  = ( in_array( $data['type'], $allowed_types, true ) ) ? $data['type'] : 'time-pass';
+        $data['type']  = in_array( $data['type'], $allowed_types, true ) ? $data['type'] : 'timepass';
 
         $pass_data = array();
 
@@ -439,7 +439,14 @@ class LaterPay_Controller_Frontend_Shortcode extends LaterPay_Controller_Base
             }
 
             if ( ! $pass_data ) {
-                $error_message = LaterPay_Helper_View::get_error_message( __( 'Wrong time pass id.', 'laterpay' ), $atts );
+
+                if ( 'subscription' === $data['type'] ) {
+                    $error_message = __( 'Wrong subscription id.', 'laterpay' );
+                } else {
+                    $error_message = __( 'Wrong time pass id.', 'laterpay' );
+                }
+
+                $error_message = LaterPay_Helper_View::get_error_message( $error_message, $atts );
                 $event->set_result( $error_message );
                 throw new LaterPay_Core_Exception( $error_message );
             }
@@ -451,6 +458,7 @@ class LaterPay_Controller_Frontend_Shortcode extends LaterPay_Controller_Base
             'standard_currency'       => $this->config->get( 'currency.code' ),
             'preview_post_as_visitor' => LaterPay_Helper_User::preview_post_as_visitor( get_post() ),
         );
+
         $this->assign( 'laterpay', $view_args );
 
         $html = $this->get_text_view( 'frontend/partials/post/gift/gift-redeem' );
