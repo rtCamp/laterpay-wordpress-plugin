@@ -423,7 +423,7 @@ class LaterPay_Controller_Frontend_Shortcode extends LaterPay_Controller_Base
             'type' => 'timepass',
         ), $atts );
 
-        $allowed_types = [ 'time-pass', 'subscription' ];
+        $allowed_types = [ 'timepass', 'subscription' ];
         $data['type']  = strtolower( trim( $data['type'] ) );
         $data['type']  = in_array( $data['type'], $allowed_types, true ) ? $data['type'] : 'timepass';
 
@@ -441,9 +441,9 @@ class LaterPay_Controller_Frontend_Shortcode extends LaterPay_Controller_Base
             if ( ! $pass_data ) {
 
                 if ( 'subscription' === $data['type'] ) {
-                    $error_message = __( 'Wrong subscription id.', 'laterpay' );
+                    $error_message = __( 'Wrong Subscription ID.', 'laterpay' );
                 } else {
-                    $error_message = __( 'Wrong time pass id.', 'laterpay' );
+                    $error_message = __( 'Wrong Time Pass ID.', 'laterpay' );
                 }
 
                 $error_message = LaterPay_Helper_View::get_error_message( $error_message, $atts );

@@ -24,7 +24,11 @@ if ( 0 !== absint( $gift_pass['access_to'] ) ) {
 }
 
 $pass_id = ( ! empty( $gift_pass['pass_id'] ) ) ? $gift_pass['pass_id'] : '';
-$pass_id = ( empty( $pass_id ) && ! empty( $gift_pass['id'] ) ) ? $gift_pass['id'] : '';
+$pass_id = ( empty( $pass_id ) && ! empty( $gift_pass['id'] ) ) ? $gift_pass['id'] : $pass_id;
+
+if ( empty( $pass_id ) ) {
+    return;
+}
 ?>
 
 <div class="lp_js_giftCard lp_gift-card lp_gift-card-<?php echo esc_attr( $pass_id ); ?>">
