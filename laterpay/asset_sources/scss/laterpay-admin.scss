@@ -74,6 +74,8 @@ dfn.lp_region_notice {
             overflow: hidden;
             white-space: pre-wrap;
             margin-bottom: 10px;
+            text-overflow: ellipsis;
+            cursor: pointer;
         }
     }
 

@@ -121,7 +121,7 @@
 
                     if ( 0 !== image_element.length ) {
                         var preview_image = attachment.url;
-                        var media_name = attachment.title;
+                        var media_name = attachment.filename;
 
                         if ( 'video' === attachment.type ) {
                             preview_image = laterpay_shortcode_generator_labels.preview_images.video;
@@ -134,7 +134,7 @@
                         }
 
                         $( image_element ).attr( 'src', preview_image );
-                        $( media_name_element ).text( media_name );
+                        $( media_name_element ).attr( 'title', media_name ).text( media_name );
                         $( clear_media_element ).removeClass( 'hidden' );
                     }
 
@@ -185,7 +185,7 @@
                 var key = '';
 
                 $( image_element ).attr( 'src', laterpay_shortcode_generator_labels.preview_images.gallery );
-                $( media_name_element ).text( '' );
+                $( media_name_element ).attr( 'title', '' ).text( '' );
                 $( clear_media_element ).addClass( 'hidden' );
 
                 /**
