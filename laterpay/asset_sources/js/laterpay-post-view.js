@@ -513,7 +513,7 @@
                     $wrapper.empty().append($feedbackMessage);
                 }
 
-                if ( 'timepass' === type || 'subscription' === type ) {
+                if ( '' === type || 'timepass' === type || 'subscription' === type ) {
                     $wrapper.prepend($feedbackMessage);
 
                     $feedbackMessage = $('#lp_js_voucherCodeFeedbackMessage', $wrapper);
