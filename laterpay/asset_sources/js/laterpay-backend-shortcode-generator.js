@@ -152,11 +152,13 @@
              */
             get_media_markup: function ( target_field ) {
 
+                var labels = laterpay_shortcode_generator_labels;
+
                 // @codingStandardsIgnoreStart
-                return '<div id="preview_' + target_field + '" class="lp-media-preview" data-target_field="' + target_field + '">' +
-                       '<img class="preview-image" src="' + laterpay_shortcode_generator_labels.preview_images.gallery + '"/>' +
+                return '<div id="preview_' + target_field + '" class="lp-media-preview" data-target_field="' + target_field + '">' + // jshint ignore:line
+                       '<img class="preview-image" src="' + labels.preview_images.gallery + '"/>' +
                        '<span class="media-name"></span>' +
-                       '<a class="button-clear_media hidden" href="javascript:">' + laterpay_shortcode_generator_labels.button.clear + '</a>' +
+                       '<a class="button-clear_media hidden" href="javascript:">' + labels.button.clear + '</a>' +
                        '<br class="clear"/>' +
                        '</div>';
                 // @codingStandardsIgnoreEnd
