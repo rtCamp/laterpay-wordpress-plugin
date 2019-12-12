@@ -97,6 +97,14 @@ class LaterPay_Controller_Frontend_Post extends LaterPay_Controller_Base
             throw new LaterPay_Core_Exception_InvalidIncomingData( 'link' );
         }
 
+        if ( ! isset( $_GET['type'] ) ) { // phpcs:ignore
+            throw new LaterPay_Core_Exception_InvalidIncomingData( 'type' );
+        }
+
+        if ( ! isset( $_GET['pass_id'] ) ) { // phpcs:ignore
+            throw new LaterPay_Core_Exception_InvalidIncomingData( 'pass_id' );
+        }
+
         if ( ! isset( $_GET['lp_post_id'] ) ) { // phpcs:ignore
             throw new LaterPay_Core_Exception_InvalidIncomingData( 'lp_post_id' );
         }
@@ -105,6 +113,17 @@ class LaterPay_Controller_Frontend_Post extends LaterPay_Controller_Base
         $code       = sanitize_text_field( $_GET['code'] ); // phpcs:ignore
         $code_data  = LaterPay_Helper_Voucher::check_voucher_code( $code );
         $lp_post_id = intval( $_GET['lp_post_id'] ); // phpcs:ignore
+        $type       = filter_input( INPUT_GET, 'type', FILTER_SANITIZE_STRING );
+        $type       = sanitize_text_field( $type );
+
+        $requested_pass_id = filter_input( INPUT_GET, 'pass_id', FILTER_SANITIZE_STRING );
+        $requested_pass_id = ( ! empty( $requested_pass_id ) && 0 < intval( $requested_pass_id ) ) ? absint( $requested_pass_id ) : 0;
+
+        /**
+         * Note: LaterPay_Helper_Voucher::check_voucher_code()
+         * Will return "time_pass" as string for "timepass" voucher.
+         */
+        $type = ( 'timepass' === $type ) ? 'time_pass' : $type;
 
         // if code data exists.
         if ( $code_data ) {
@@ -118,6 +137,32 @@ class LaterPay_Controller_Frontend_Post extends LaterPay_Controller_Base
             );
 
             $url_data = [];
+
+            /**
+             * If shortcode have pass_id then allow coupon code for only that voucher.
+             */
+            if ( ! empty( $requested_pass_id ) && absint( $requested_pass_id ) !== absint( $pass_id ) ) {
+                $event->set_result(
+                    array(
+                        'success' => false,
+                    )
+                );
+
+                return;
+            }
+
+            /**
+             * If shortcode have "type" then Allow coupon for only those type of voucher.
+             */
+            if ( ! empty( $type ) && $type !== $code_data['type'] ) {
+                $event->set_result(
+                    array(
+                        'success' => false,
+                    )
+                );
+
+                return;
+            }
 
             // Get new purchase URL.
             if ( 'time_pass' === $code_data['type'] ) {
