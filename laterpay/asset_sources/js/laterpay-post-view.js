@@ -441,7 +441,7 @@
                                 var has_matches = false,
                                     passId,subId;
 
-                                if ( 'timepass' === r.type ) {
+                                if ( 'time_pass' === r.type ) {
                                     $($o.timePass).each(function() {
                                         // Check for each shown time pass,
                                         // if the request returned updated data for it.

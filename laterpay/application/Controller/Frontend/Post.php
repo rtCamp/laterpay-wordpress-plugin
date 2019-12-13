@@ -150,10 +150,14 @@ class LaterPay_Controller_Frontend_Post extends LaterPay_Controller_Base
                 return;
             }
 
+            $allowed_types = array( 'time_pass', 'subscription' );
+
             /**
              * If shortcode has "type" then restrict coupon usage to type.
+             * Check only for "time_pass" and "subscription".
+             * Since, For other type we need to allow. Like "purchase-overlay"
              */
-            if ( ! empty( $type ) && $type !== $code_data['type'] ) {
+            if ( ! empty( $type ) && in_array( $type, $allowed_types, true ) && $type !== $code_data['type'] ) {
                 $event->set_result(
                     array(
                         'success' => false,
