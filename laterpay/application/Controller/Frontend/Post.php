@@ -139,7 +139,7 @@ class LaterPay_Controller_Frontend_Post extends LaterPay_Controller_Base
             $url_data = [];
 
             /**
-             * If shortcode have pass_id then allow coupon code for only that voucher.
+             * If shortcode has id then restrict coupon code to that time pass / subscription.
              */
             if ( ! empty( $requested_pass_id ) && absint( $requested_pass_id ) !== absint( $pass_id ) ) {
                 $event->set_result(
@@ -152,7 +152,7 @@ class LaterPay_Controller_Frontend_Post extends LaterPay_Controller_Base
             }
 
             /**
-             * If shortcode have "type" then Allow coupon for only those type of voucher.
+             * If shortcode has "type" then restrict coupon usage to type.
              */
             if ( ! empty( $type ) && $type !== $code_data['type'] ) {
                 $event->set_result(

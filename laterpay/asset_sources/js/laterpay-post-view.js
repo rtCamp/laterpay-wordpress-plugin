@@ -380,7 +380,7 @@
                     .on('mousedown', function() {
 
                         var type = $( this ).data( 'type' );
-                        var pass_id = $( this ).data( 'pass-id' );
+                        var pass_id = $( this ).data( 'id' );
 
                         redeemVoucherCode(
                             $(this).parent(),
@@ -397,7 +397,7 @@
                     .on('mousedown', function() {
 
                         var type = $( this ).data( 'type' );
-                        var pass_id = $( this ).data( 'pass-id' );
+                        var pass_id = $( this ).data( 'id' );
 
                         redeemVoucherCode(
                             $(this).parent(),
