@@ -114,7 +114,6 @@ class LaterPay_Controller_Frontend_Post extends LaterPay_Controller_Base
         $code_data  = LaterPay_Helper_Voucher::check_voucher_code( $code );
         $lp_post_id = intval( $_GET['lp_post_id'] ); // phpcs:ignore
         $type       = filter_input( INPUT_GET, 'type', FILTER_SANITIZE_STRING );
-        $type       = sanitize_text_field( $type );
 
         $requested_pass_id = filter_input( INPUT_GET, 'pass_id', FILTER_SANITIZE_STRING );
         $requested_pass_id = ( ! empty( $requested_pass_id ) && 0 < intval( $requested_pass_id ) ) ? absint( $requested_pass_id ) : 0;
