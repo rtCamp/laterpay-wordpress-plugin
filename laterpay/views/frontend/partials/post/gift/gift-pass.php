@@ -36,7 +36,7 @@ $is_subscription   = ( ! empty( $subscription_data ) && is_array( $subscription_
 
 ?>
 
-<div class="lp_js_giftCard lp_gift-card lp_gift-card-<?php echo esc_attr( $pass_id ); ?> <?php echo $is_subscription ? 'lp_gift-card-subscription' : 'lp_gift-card-timepass'; ?> ">
+<div class="lp_js_giftCard lp_gift-card lp_gift-card-<?php echo esc_attr( $pass_id ); ?> <?php echo $is_subscription ? 'lp_gift-card-subscription' : ''; ?> ">
     <h4 class="lp_gift-card__title"><?php echo esc_html( $gift_pass['title'] ); ?></h4>
     <p class="lp_gift-card__description"><?php echo wp_kses_post( $gift_pass['description'] ); ?></p>
     <table class="lp_gift-card___conditions">
@@ -46,7 +46,7 @@ $is_subscription   = ( ! empty( $subscription_data ) && is_array( $subscription_
                 <?php
                 if ( $is_subscription ) {
                     /* translators: %s: Subscription Period */
-                    $subscription_text = sprintf( _x( 'Subscription (Renews in a %s, cancellable anytime)', 'laterpay' ), strtolower( $period ) );
+                    $subscription_text = sprintf( __( 'Subscription (Renews in a %s, cancellable anytime)', 'laterpay' ), strtolower( $period ) );
 
                     echo esc_html(
                         sprintf(
