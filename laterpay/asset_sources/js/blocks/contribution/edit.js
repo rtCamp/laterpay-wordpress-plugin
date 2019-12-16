@@ -245,7 +245,7 @@ class Edit extends Component {
 									placeholder={ __( 'Support the author', 'laterpay' ) }
 									value={ dialogHeader }
 									onChange={ ( newValue ) => {
-										setAttributes( { dialogHeader: newValue } )
+										setAttributes( { dialogHeader: newValue } );
 									} }
 								/>
 
@@ -254,7 +254,7 @@ class Edit extends Component {
 									placeholder={ __( 'How much would you like to contribute?', 'laterpay' ) }
 									value={ dialogDescription }
 									onChange={ ( newValue ) => {
-										setAttributes( { dialogDescription: newValue } )
+										setAttributes( { dialogDescription: newValue } );
 									} }
 								/>
 

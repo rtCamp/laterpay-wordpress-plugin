@@ -68,8 +68,8 @@
                         updateLivePreview( undefined, undefined, 'multiple' );
                     };
 
-                    $o.dialogHeader.on( 'change', onchangeCallback );
-                    $o.dialogDescription.on( 'change', onchangeCallback );
+                    $o.dialogHeader.on( 'keyup', debounce( onchangeCallback, 500 ) );
+                    $o.dialogDescription.on( 'keyup', debounce( onchangeCallback, 500 ) );
 
                     // Event handler for default amount selection in multiple contribution.
                     $($o.presetButtonAmount).on('click', function () {

@@ -60,18 +60,14 @@ $currency_symbol = 'USD' === $laterpay['currency']['code'] ? '$' : '€';
 
                         <div class="contributions_option_single hide-on-single-purchase">
                             <label class="lp_contribution_label" for="lp_dialog_header"><?php esc_html_e( 'Dialog Header (optional)', 'laterpay' ); ?></label>
-                            <p class="lp_tooltip lp_tooltip_p lp_tooltip_contribution" data-tooltip="<?php esc_attr_e( 'Optional. Appear as Dialog box header.', 'laterpay' ); ?>">
-                                <span data-icon="m"></span>
-                            </p><br />
+                            <br />
                             <input type="text" id="lp_dialog_header" class="lp_input" name="dialog_header" placeholder="<?php esc_attr_e( 'Support the author', 'laterpay' ); ?>" value=""/>
                             <p data-icon="n" class="lp-contribution-error-message"></p>
                         </div>
 
                         <div class="contributions_option_single hide-on-single-purchase">
                             <label class="lp_contribution_label" for="lp_dialog_description"><?php esc_html_e( 'Dialog Description (optional)', 'laterpay' ); ?></label>
-                            <p class="lp_tooltip lp_tooltip_p lp_tooltip_contribution" data-tooltip="<?php esc_attr_e( 'Optional. Appear as Dialog box description.', 'laterpay' ); ?>">
-                                <span data-icon="m"></span>
-                            </p><br />
+                            <br />
                             <input type="text" id="lp_dialog_description" class="lp_input" name="dialog_description" placeholder="<?php esc_attr_e( 'How much would you like to contribute?', 'laterpay' ); ?>" value=""/>
                             <p data-icon="n" class="lp-contribution-error-message"></p>
                         </div>

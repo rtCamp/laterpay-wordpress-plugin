@@ -24,11 +24,11 @@ registerBlockType( 'laterpay/contribution', {
 		},
 		dialogHeader: {
 			type: 'string',
-			default: __( 'Support the author', 'laterpay' )
+			default: __( 'Support the author', 'laterpay' ),
 		},
 		dialogDescription: {
 			type: 'string',
-			default: __( 'How much would you like to contribute?', 'laterpay' )
+			default: __( 'How much would you like to contribute?', 'laterpay' ),
 		},
 		campaignThankYouPage: {
 			type: 'string', // Redirection page after purchase.
