@@ -65,11 +65,11 @@
 
                     var onchangeCallback = function ( e ) {
                         resetGenerateButton();
+                        updateLivePreview( undefined, undefined, 'multiple' );
                     };
 
                     $o.dialogHeader.on( 'change', onchangeCallback );
                     $o.dialogDescription.on( 'change', onchangeCallback );
-
 
                     // Event handler for default amount selection in multiple contribution.
                     $($o.presetButtonAmount).on('click', function () {
