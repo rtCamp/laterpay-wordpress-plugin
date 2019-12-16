@@ -63,7 +63,7 @@
                         }, 1500)
                     );
 
-                    var onchangeCallback = function ( e ) {
+                    var onchangeCallback = function () {
                         resetGenerateButton();
                         updateLivePreview( undefined, undefined, 'multiple' );
                     };
