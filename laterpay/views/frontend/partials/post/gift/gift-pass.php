@@ -46,7 +46,7 @@ $is_subscription   = ( ! empty( $subscription_data ) && is_array( $subscription_
                 <?php
                 if ( $is_subscription ) {
                     /* translators: %s: Subscription Period */
-                    $subscription_text = sprintf( _x( 'Subscription (Renews in a %s, cancellable anytime)', 'laterpay' ), $period );
+                    $subscription_text = sprintf( _x( 'Subscription (Renews in a %s, cancellable anytime)', 'laterpay' ), strtolower( $period ) );
 
                     echo esc_html(
                         sprintf(
