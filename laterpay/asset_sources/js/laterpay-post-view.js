@@ -412,7 +412,7 @@
             },
 
             redeemVoucherCode = function($wrapper, feedbackMessageTpl, input, type, is_gift, pass_id) {
-                var code = $(input).val();
+                var code = $( input, $wrapper ).val();
                 pass_id = ( 'number' === typeof pass_id ) ? pass_id : 0;
 
                 if ( 'string' !== typeof type ) {
@@ -438,7 +438,7 @@
                         dataType  : 'json',
                     } ).done( function ( r ) {
                         // clear input
-                        $(input).val('');
+                        $( input, $wrapper ).val( '' );
 
                         if (r.success) {
                             if (!is_gift) {
