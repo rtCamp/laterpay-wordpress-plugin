@@ -405,12 +405,26 @@ class LaterPay_Controller_Frontend_Shortcode extends LaterPay_Controller_Base
     }
 
     /**
-     * Render a form to redeem a gift code for a time pass from shortcode [laterpay_redeem_voucher].
+     * Render a form to redeem a gift code from shortcode [laterpay_redeem_voucher].
      * The shortcode renders an input and a button.
      * If the user enters his gift code and clicks the 'Redeem' button, a purchase dialog is opened,
      * where the user has to confirm the purchase of the associated time pass for a price of 0.00 Euro.
      * This step is done to ensure that this user accepts the LaterPay terms of use.
+     *
+     * Parameters
+     * - id   : (Optional) Pass ID or Sub ID. When passed. It will accept voucher code only for that timepass or
+     *                     subscription.
+     * - type : (Optional) Type of voucher code accepted by form. Expected values "timepass", "subscription"
+     *
+     * Uses
+     * - [laterpay_redeem_voucher id="1" type="timepass"]
+     * - [laterpay_redeem_voucher id="2" type="subscription"]
+     * - [laterpay_redeem_voucher type="subscription"]
+     * - [laterpay_redeem_voucher]
+     *
      * @param LaterPay_Core_Event $event
+     *
+     * @throws LaterPay_Core_Exception
      *
      * @return string
      */
