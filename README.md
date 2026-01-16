@@ -3,7 +3,7 @@ laterpay-wordpress-plugin
 
 This is the official LaterPay plugin for selling digital content with WordPress.
 
-Feel free to fork the plugin and adapt it to your needs.
+Feel free to fork the plugin and adapt it to your own needs.
 
 Please get involved in this project and contribute back changes other users would also benefit from.
 
